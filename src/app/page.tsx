@@ -3,8 +3,9 @@ import { Hero } from "@/components/Hero";
 import { ProblemSolution } from "@/components/ProblemSolution";
 import { IndexProducts } from "@/components/IndexProducts";
 import { Agents } from "@/components/Agents";
-import { Demo } from "@/components/Demo";
-import { Comparison, Footer } from "@/components/Comparison";
+import { GetStarted } from "@/components/GetStarted";
+import { Comparison } from "@/components/Comparison";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -15,8 +16,8 @@ export default function Home() {
         <ProblemSolution />
         <IndexProducts />
         <Agents />
+        <GetStarted />
         <Comparison />
-        <Demo />
       </main>
       <Footer />
     </>

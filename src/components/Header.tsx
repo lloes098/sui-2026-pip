@@ -1,43 +1,37 @@
-const navLinks = [
-  { href: "#problem", label: "Problem" },
-  { href: "#solution", label: "Solution" },
-  { href: "#indexes", label: "Indexes" },
-  { href: "#agents", label: "Agents" },
-  { href: "#demo", label: "Demo" },
-];
+"use client";
+
+import Link from "next/link";
+import { copy } from "@/lib/copy";
+import { Logo } from "./Logo";
+import { ConnectWallet } from "./WalletConnect";
 
 export function Header() {
-  return (
-    <header className="fixed top-0 z-50 w-full border-b border-border glass">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sui to-sui-cyan text-sm font-bold text-background">
-            P
-          </div>
-          <span className="text-lg font-semibold tracking-tight">PIP</span>
-          <span className="hidden rounded-full border border-border px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted sm:inline">
-            Sui Hackathon
-          </span>
-        </a>
+  const navLinks = [
+    { href: "/#problem", label: copy.nav.overview },
+    { href: "/#indexes", label: copy.nav.indexes },
+    { href: "/#agents", label: copy.nav.agents },
+    { href: "/app", label: copy.nav.trade },
+  ];
 
-        <nav className="hidden items-center gap-8 md:flex">
+  return (
+    <header className="fixed top-0 z-50 w-full glass">
+      <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center justify-between gap-4 px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5">
+          <Logo size={30} priority />
+          <span className="hidden text-sm font-bold uppercase tracking-[0.12em] sm:inline">
+            PIP
+          </span>
+        </Link>
+
+        <nav className="sui-nav-shell hidden md:flex">
           {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted transition-colors hover:text-foreground"
-            >
+            <Link key={link.href} href={link.href} className="sui-nav-link shrink-0">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a
-          href="#demo"
-          className="rounded-full bg-gradient-to-r from-sui to-sui-cyan px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
-        >
-          Try Demo
-        </a>
+        <ConnectWallet />
       </div>
     </header>
   );

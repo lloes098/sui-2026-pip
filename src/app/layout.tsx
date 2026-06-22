@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import type { ReactNode } from "react";
+import { Providers } from "@/providers/Providers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +15,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PIP — Predict Index Protocol | Sui Hackathon",
+  title: "PIP — Predict Index Protocol",
   description:
     "AI-managed ETF protocol for DeepBook Predict. Invest in Bull, Bear, Volatility, or Sideway indexes with natural language — no range selection required.",
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "128x128", type: "image/png" },
+      { url: "/pip-logo.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "128x128", type: "image/png" }],
+    shortcut: "/favicon.png",
+  },
   openGraph: {
     title: "PIP — Predict Index Protocol",
     description:
@@ -24,18 +34,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -1,23 +1,23 @@
+import { ArrowRight, Check, X } from "lucide-react";
+
 export function ProblemSolution() {
   return (
     <>
-      <section id="problem" className="border-t border-border py-24">
+      <section id="problem" className="sui-divider py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <span className="text-sm font-medium uppercase tracking-wider text-sui">
-            Problem
-          </span>
-          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-4xl">
+          <span className="sui-label">Problem</span>
+          <h2 className="sui-heading mt-4 max-w-2xl">
             DeepBook Predict has a high barrier to entry
           </h2>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
+          <p className="mt-4 max-w-2xl text-muted">
             Range selection, strike prices, expiry dates — the complexity blocks
             mainstream users from participating in prediction markets.
           </p>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-red-500/20 bg-red-500/5 p-8">
-              <h3 className="text-lg font-semibold text-red-400">
-                Today: Manual Complexity
+          <div className="mt-12 grid gap-5 md:grid-cols-2">
+            <div className="sui-card p-8">
+              <h3 className="text-sm font-bold uppercase tracking-wide text-muted">
+                Today · Manual
               </h3>
               <ul className="mt-6 space-y-4">
                 {[
@@ -26,17 +26,17 @@ export function ProblemSolution() {
                   "Monitor dozens of ranges simultaneously",
                   "Rebalance when ranges expire",
                 ].map((item) => (
-                  <li key={item} className="flex gap-3 text-muted">
-                    <span className="mt-1 text-red-400">✕</span>
+                  <li key={item} className="flex gap-3 text-sm text-muted">
+                    <X className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2.5} />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8">
-              <h3 className="text-lg font-semibold text-emerald-400">
-                With PIP: One-Click Indexes
+            <div className="sui-card-glow p-8">
+              <h3 className="text-sm font-bold uppercase tracking-wide">
+                With PIP · One-Click
               </h3>
               <ul className="mt-6 space-y-4">
                 {[
@@ -45,8 +45,8 @@ export function ProblemSolution() {
                   "Automatic risk management & PLP allocation",
                   "Rebalancing handled at expiry",
                 ].map((item) => (
-                  <li key={item} className="flex gap-3 text-muted">
-                    <span className="mt-1 text-emerald-400">✓</span>
+                  <li key={item} className="flex gap-3 text-sm text-muted">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={2.5} />
                     {item}
                   </li>
                 ))}
@@ -56,38 +56,34 @@ export function ProblemSolution() {
         </div>
       </section>
 
-      <section id="solution" className="border-t border-border py-24">
+      <section id="solution" className="sui-divider py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <span className="text-sm font-medium uppercase tracking-wider text-sui">
-            Solution
-          </span>
-          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-4xl">
+          <span className="sui-label">Solution</span>
+          <h2 className="sui-heading mt-4 max-w-2xl">
             AI-managed ETF protocol for DeepBook Predict
           </h2>
-          <p className="mt-4 max-w-2xl text-lg text-muted">
-            PIP (Predict Index Protocol) bundles complex Range products into
-            simple index tokens. Users invest in macro views — agents manage
-            the micro structure.
+          <p className="mt-4 max-w-2xl text-muted">
+            PIP bundles complex Range products into simple index tokens. Users
+            invest in macro views — agents manage the micro structure.
           </p>
 
-          <div className="mt-12 rounded-2xl border border-border bg-surface p-8 md:p-10">
+          <div className="sui-card-glow mt-12 p-8 md:p-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
               <div>
-                <div className="text-xs font-medium uppercase tracking-wider text-muted">
-                  User Input
-                </div>
-                <div className="mt-3 rounded-xl border border-border bg-surface-elevated p-4 font-mono text-sm">
-                  <span className="text-sui">&gt;</span> BTC 올라감. 리스크 중간. $500
-                  투자
+                <div className="sui-label !text-muted">User Input</div>
+                <div className="mt-3 rounded-xl border border-border bg-surface p-4 font-mono text-sm">
+                  <span className="text-muted">&gt;</span> BTC going up. Medium
+                  risk. Invest $500
                 </div>
               </div>
 
-              <div className="hidden text-2xl text-muted lg:block">→</div>
+              <ArrowRight
+                className="hidden h-6 w-6 shrink-0 text-muted lg:block"
+                strokeWidth={2}
+              />
 
               <div>
-                <div className="text-xs font-medium uppercase tracking-wider text-muted">
-                  AI Pipeline
-                </div>
+                <div className="sui-label !text-muted">AI Pipeline</div>
                 <div className="mt-3 space-y-2">
                   {[
                     "Market Analysis",
@@ -99,10 +95,9 @@ export function ProblemSolution() {
                   ].map((step, i) => (
                     <div
                       key={step}
-                      className="flex items-center gap-3 rounded-lg border border-border bg-surface-elevated px-4 py-2 text-sm"
-                      style={{ animationDelay: `${i * 100}ms` }}
+                      className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm"
                     >
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sui/20 text-xs font-medium text-sui">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-border text-xs font-bold text-muted">
                         {i + 1}
                       </span>
                       {step}

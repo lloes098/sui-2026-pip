@@ -1,23 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #06080f;
-  --foreground: #f0f4ff;
-  --muted: #8892b0;
-  --sui-blue: #6fbcf0;
-  --sui-cyan: #4da2ff;
-  --surface: #0d1117;
-  --surface-elevated: #141b2d;
-  --border: rgba(111, 188, 240, 0.12);
-  --glow: rgba(77, 162, 255, 0.35);
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #888888;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-elevated: rgba(255, 255, 255, 0.07);
+  --surface-card: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --radius-card: 1rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-sui: var(--sui-blue);
-  --color-sui-cyan: var(--sui-cyan);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
   --color-border: var(--border);
@@ -34,71 +32,258 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
 ::selection {
-  background: rgba(77, 162, 255, 0.35);
+  background: rgba(255, 255, 255, 0.2);
   color: white;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+/* ── Typography ── */
+.sui-label {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 0.8;
-  }
+.sui-heading {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-@keyframes flow-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.sui-display {
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+/* ── Cards ── */
+.sui-card {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  background: var(--surface-card);
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+.sui-card-glow {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border);
+  background: var(--surface-card);
+}
+
+.sui-card-glow:hover {
+  border-color: var(--border-strong);
+}
+
+/* ── Navigation ── */
+.sui-nav-shell {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.sui-nav-link {
+  padding: 0.4375rem 0.875rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+
+.sui-nav-link:hover {
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sui-nav-link-active {
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Buttons (flat black & white — no gradients) ── */
+.sui-btn-primary,
+.sui-btn-solid,
+.sui-btn-ghost,
+a.sui-btn-primary,
+a.sui-btn-solid,
+a.sui-btn-ghost,
+button.sui-btn-primary,
+button.sui-btn-solid,
+button.sui-btn-ghost {
+  background-image: none !important;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sui-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-strong);
+  background: transparent !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.sui-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--foreground);
+}
+
+.sui-btn-solid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--foreground);
+  background: var(--foreground) !important;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--background);
+  transition: opacity 0.15s;
+}
+
+.sui-btn-solid:hover {
+  opacity: 0.88;
+  background: var(--foreground) !important;
+}
+
+.sui-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: transparent !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.sui-btn-ghost:hover {
+  border-color: var(--border-strong);
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ── Tabs ── */
+.sui-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  width: fit-content;
+}
+
+.sui-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+
+.sui-tab-active {
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ── Header ── */
+.glass {
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 
 .grid-bg {
+  background-color: transparent;
   background-image:
-    linear-gradient(rgba(111, 188, 240, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111, 188, 240, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #6fbcf0 0%, #4da2ff 50%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.sui-divider {
+  border-top: 1px solid var(--border);
 }
 
-.glass {
-  background: rgba(13, 17, 23, 0.7);
-  backdrop-filter: blur(12px);
+.sui-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
   border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 0.875rem;
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.sui-input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+  opacity: 1;
+}
+
+.sui-input:focus {
+  border-color: var(--border-strong);
+}
+
+.sui-input:focus::placeholder {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+/* dApp Kit modal */
+mysten-dapp-kit-connect-modal {
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #111111;
+  --secondary-foreground: #ffffff;
+  --muted: #111111;
+  --muted-foreground: #888888;
+  --accent: #111111;
+  --accent-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.12);
+  --popover: #000000;
+  --popover-foreground: #ffffff;
+  --ring: #ffffff;
+  --radius: 0.75rem;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
 }
